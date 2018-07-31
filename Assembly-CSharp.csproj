@@ -84,6 +84,11 @@
      <Compile Include="Assets\LeanTouch\Scripts\LeanGesture.cs" />
      <Compile Include="Assets\LeanTouch\Scripts\LeanSnapshot.cs" />
      <Compile Include="Assets\LeanTouch\Scripts\LeanTouch.cs" />
+     <Compile Include="Assets\Scripts\modelController.cs" />
+     <Compile Include="Assets\Scripts\playSound.cs" />
+     <Compile Include="Assets\Scripts\playSound2.cs" />
+     <Compile Include="Assets\Scripts\Test.cs" />
+     <Compile Include="Assets\stopSound.cs" />
      <Compile Include="Assets\Vuforia\Scripts\DefaultInitializationErrorHandler.cs" />
      <Compile Include="Assets\Vuforia\Scripts\DefaultTrackableEventHandler.cs" />
      <None Include="Assets\Optimize SDKohaku-Chanz\Shader\Unitychan_chara_eye.shader" />
