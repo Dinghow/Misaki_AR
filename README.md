@@ -11,7 +11,7 @@ An AR project about virtual ACG role
 
 - You will see Misaki
 
-![](/Users/Dinghow/OneDrive/图片/WechatIMG6.png)
+![](http://ouluvpd0z.bkt.clouddn.com/WechatIMG6.png)
 
 - You can click "语音指令",and say some instructions like "跳个舞吧","Misaki酱，请跳舞","M酱，唱首歌吧"，then Misaki will do related behaviors
 - You can click the buttons to control Misaki directly
