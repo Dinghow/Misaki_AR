@@ -19,11 +19,7 @@ An AR project about virtual ACG role
 
 ![](http://ouluvpd0z.bkt.clouddn.com/WechatIMG3.png)
 
-## 2.Demo
-
-The Video Demo is in our project folder
-
-## 3.Development environment
+## 2.Development environment
 
 Platform：Windows10 version1803
 
