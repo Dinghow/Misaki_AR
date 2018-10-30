@@ -2,6 +2,7 @@
 
 An AR project about virtual ACG role
 
+The animation part is designed by Lu Chen
 ## 1.How to run our project
 
 - Install our application use **misaki_ar.apk**
