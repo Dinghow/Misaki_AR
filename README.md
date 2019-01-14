@@ -4,7 +4,7 @@ An AR project about virtual ACG role
 
 The animation part is designed by Lu Chen
 
-The WebAR animation part is designed by @[Pomevak](https://github.com/Pomevak)
+The WebAR animation & music part are designed by @[Pomevak](https://github.com/Pomevak)
 
 
 
