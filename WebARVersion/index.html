@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+    <style type="text/css" media="screen">
+    .btn-group {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btn-group2{
+        position: absolute;
+        top: 4%;
+        right: 4%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .control-btn {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        background-color: #ed2f6a;
+        width: 5em;
+        height: 2em;
+        border-radius: 5px;
+        margin: 5px;
+        border: none;
+        color: white;
+        outline: none;
+    }
+
+    .audio-control-btn{
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        background-color: #ed2f6a;
+        width: 10em;
+        height: 4em;
+        border-radius: 5px;
+        margin: 5px;
+        border: none;
+        color: white;
+        outline: none;
+    }
+
+    .control-btn:hover {
+        cursor: pointer;
+    }
+    </style>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+    <script src="js/aframe-extras.min.js"></script>
+    <script>
+    AFRAME.registerComponent('animation-control', {
+        schema: { default: '' },
+        init() {
+            const misaki = document.querySelector('#misaki');
+
+            this.el.addEventListener('click', (e) => {
+                console.log(e);
+                misaki.setAttribute("animation-mixer", this.data);
+            });
+
+            this.el.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                misaki.setAttribute("animation-mixer", this.data);
+            });
+
+        }
+    });
+    </script>
+    <title>Web AR Experiment</title>
+</head>
+
+<body>
+    <a-scene embedded arjs='sourceType: webcam; trackingMethod: best; debugUIEnabled: false;'>
+        <a-assets>
+            <a-asset-item id="Misaki" src="assets/Misaki/scene.gltf"></a-asset-item>
+        </a-assets>
+        <!-- <a-marker preset='custom' type="pattern" url='assets/marker/pattern-marker.patt' emitevents="true" cursor="rayOrigin: mouse" id="animated-marker"></a-marker> -->
+        <a-marker preset='hiro' emitevents="true" cursor="rayOrigin: mouse" id="animated-marker">
+            <a-entity>
+                <a-gltf-model id="misaki" src="#Misaki" scale="0.005 0.005 0.005" rotation="0 0 0" animation-mixer="clip: StandA_idleA"></a-gltf-model>
+                <a-entity id='singSong' sound="src: url(assets/sound/reunion.mp3); on: sing"></a-entity>
+                <a-entity id='danceSong' sound="src: url(assets/sound/向阳时光.mp3); on: dance"></a-entity>
+                <!--
+                <a-entity position="0 0 -1">
+                    <a-text id="idle" position="0 0.5 0" scale="1 1 1" value="IDLE" animation-control="clip: StandA_idleA; crossFadeDuration: .3"></a-text>
+                    <a-text id="jump" position="-0.5 0 0" scale="1 1 1" value="JUMP" animation-control="clip: StandB; crossFadeDuration: .3"></a-text>
+                    <a-text id="walk" position="0 -0.5 0" scale="1 1 1" value="WALK" animation-control="clip: Wallk; crossFadeDuration: .3"></a-text>
+                    <a-text id="run" position="0.5 0 0" scale="1 1 1" value="RUN" animation-control="clip: Run_set; crossFadeDuration: .3"></a-text>
+                </a-entity>
+            -->
+            </a-entity>
+        </a-marker>
+        <a-entity camera></a-entity>
+    </a-scene>
+    <div class="btn-group">
+        <button id="walkBtn" class="control-btn" data="clip: Walk; crossFadeDuration: .3">Walk</button>
+        <button id="runBtn" class="control-btn" data="clip: Run_set; crossFadeDuration: .3">Run</button>
+        <button id="standBtn" class="control-btn" data="clip: StandA; crossFadeDuration: .3">Stand</button>
+        <button id="singBtn" class="control-btn" data="clip: StandA_idleA; crossFadeDuration: .3">Sing</button>
+        <button id="danceBtn" class="control-btn" data="clip: _ForRiggingMotion; crossFadeDuration: .3">Dance</button>
+    </div>
+    <!-- <div class="btn-group2">
+        <button id="talkBtn" class="audio-control-btn">Talk to Misaki</button>
+    </div> -->
+    <script>
+    const misaki = document.querySelector('#misaki');
+    const sing_song = document.querySelector('#singSong');
+    const dance_song = document.querySelector('#danceSong');
+    const controlBtns = document.getElementsByClassName('control-btn');
+    const sing = new Event('sing');
+    const dance = new Event('dance');
+    const singBtn = document.querySelector('#singBtn');
+    const danceBtn = document.querySelector('#danceBtn');
+
+    singBtn.addEventListener('click', () => {
+        sing_song.dispatchEvent(sing);
+    });
+
+    danceBtn.addEventListener('click', () => {
+        dance_song.dispatchEvent(dance);
+    });
+
+    for (let i = 0; i < controlBtns.length; ++i) {
+        controlBtns[i].addEventListener('click', () => {
+
+            misaki.setAttribute("animation-mixer", controlBtns[i].getAttribute('data'));
+        })
+    }
+    </script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+    <script>
+    if (annyang) {
+    // Let's define our first command. First the text we expect, and then the function it should call
+    var commands = {
+        '跳(个)舞(吧)': function() {
+            console.log("Got message!");
+            dance_song.dispatchEvent(dance);
+            misaki.setAttribute("animation-mixer","clip: _ForRiggingMotion; crossFadeDuration: .3" );
+        },
+        
+        '唱(个)歌(吧)': function() {
+            console.log("Got message!");
+            sing_song.dispatchEvent(sing);
+            misaki.setAttribute("animation-mixer","clip: StandA_idleA; crossFadeDuration: .3" );
+        },
+        '打(个)招呼': function() {
+            console.log("Got message!");
+            misaki.setAttribute("animation-mixer","clip: StandA_idleA; crossFadeDuration: .3" );
+        },
+        '活动一下': function() {
+            console.log("Got message!");
+            misaki.setAttribute("animation-mixer","clip: Walk; crossFadeDuration: .3" );
+        },
+        '休息(一下)': function() {
+            console.log("Got message!");
+            misaki.setAttribute("animation-mixer","clip: StandA; crossFadeDuration: .3");
+        },
+        '停(下)': function() {
+            console.log("Got message!");
+            misaki.setAttribute("animation-mixer","clip: StandA; crossFadeDuration: .3");
+        },
+        '跑(步)': function() {
+            console.log("Got message!");
+            misaki.setAttribute("animation-mixer","clip: Run_set; crossFadeDuration: .3");
+        },
+    };
+
+    // Add our commands to annyang
+    annyang.setLanguage("zh-CN");
+    annyang.addCommands(commands);
+
+    // Start listening. You can call this here, or attach this call to an event, button, etc.
+    annyang.start();
+    }
+    </script>
+</body>
+
+</html>

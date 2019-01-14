@@ -3,13 +3,28 @@
 An AR project about virtual ACG role
 
 The animation part is designed by Lu Chen
+
+The WebAR animation part is designed by @[Pomevak](https://github.com/Pomevak)
+
+
+
 ## 1.How to run our project
+
+### 1.1 For Android version
 
 - Install our application use **misaki_ar.apk**
 
 - Open mistaki_ar,use your camera to focus on the target image
 
   ![](https://github.com/Dinghow/Misaki_AR/raw/master/img/1.jpg)
+
+### 1.2 For WebAR version
+
+You don't need to install any application for this version, based on [AR.js](https://github.com/jeromeetienne/AR.js), you can download this 	respositroy and deploy the web version on your server, then you can use any browser to open your page, focus on the new marker
+
+![](https://jeromeetienne.github.io/AR.js/data/images/HIRO.jpg)
+
+
 
 - You will see Misaki
 
