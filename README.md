@@ -16,6 +16,8 @@ The WebAR animation & music part are designed by @[Pomevak](https://github.com/P
 
 - Open mistaki_ar,use your camera to focus on the target image
 
+  (You can also use unity ios develop tool to built a ios version directly)
+
   ![](https://github.com/Dinghow/Misaki_AR/raw/master/img/1.jpg)
 
 ### 1.2 For WebAR version
@@ -38,6 +40,8 @@ You don't need to install any application for this version, based on [AR.js](htt
 
 ## 2.Development environment
 
+### 2.1 Android Version
+
 Platform：Windows10 version1803
 
 IDE：Android Studio 3.1.3/Unity2018.1.8f1
@@ -50,3 +54,12 @@ minSDKVersion: 16
 
 targetSDKVersion: 26
 
+
+
+### 2.2 WebAR Version
+
+Frame: AR.js
+
+Model: gltf
+
+Speech recognition: [Annyang](https://github.com/TalAter/annyang)
